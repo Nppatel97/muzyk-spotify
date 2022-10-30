@@ -7,5 +7,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("tailwindcss-gradient")],
+  plugins: [
+    require("tailwindcss-gradient"),
+    require("tailwind-scrollbar-hide"),
+  ],
 };
