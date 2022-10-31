@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { shuffle } from "lodash";
@@ -39,9 +39,12 @@ function Center() {
 
   console.log(playlist);
   return (
-    <div className="flex-grow">
+    <div className="flex-grow h-screen overflow-y-scroll scrollbar-hide">
       <header className="absolute top-5 right-8">
-        <div className=" text-white flex items-center space-x-2 bg-black opacity-90 hover:opacity-80 p-1 pr-2 cursor-pointer rounded-full">
+        <div
+          className="text-white flex items-center space-x-2 bg-black opacity-90 hover:opacity-80 p-1 pr-2 cursor-pointer rounded-full"
+          onClick={() => signOut}
+        >
           <img
             className="rounded-full object-cover h-8 w-8"
             src={session?.user?.image || ""}
@@ -66,6 +69,8 @@ function Center() {
             {/* @ts-ignore */}
             {playlist?.name}
           </h1>
+          {/* @ts-ignore */}
+          <small className="text-xs font-medium">{playlist?.description}</small>
         </div>
       </section>
       <div>

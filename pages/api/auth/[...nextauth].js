@@ -1,28 +1,28 @@
 import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
+import { NextRequest } from "next/server";
 import spotifyApi, { LOGIN_URL } from "../../../lib/spotify";
 
-async function refreshAccessToken(token) {
-  try {
-    spotifyApi.setAccessToken(token.accessToken);
-    spotifyApi.setRefreshToken(token.refreshToken);
-
-    const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
-    console.log(`Refreshed TOKEN: ${refreshedToken}`);
-    return {
-      ...token,
-      accessToken: refreshedToken.access_token,
-      accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000,
-      refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      ...token,
-      error: "RefreshAccessTokenError",
-    };
-  }
-}
+// async function refreshAccessToken(token) {
+//   try {
+//     // spotifyApi.setAccessToken(token.accessToken);
+//     // spotifyApi.setRefreshToken(token.refreshToken);
+//     // const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
+//     // console.log(`Refreshed TOKEN: ${refreshedToken}`);
+//     // return {
+//     //   ...token,
+//     //   accessToken: refreshedToken.access_token,
+//     //   accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000,
+//     //   refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
+//     // };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       ...token,
+//       error: "RefreshAccessTokenError",
+//     };
+//   }
+// }
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -54,7 +54,9 @@ export const authOptions = {
         return token;
       }
       console.log("WOLOLO! ACCESS TOKEN EXPIRED!!");
-      return await refreshAccessToken(token);
+      const url = req.nextUrl.clone();
+      url.pathname = "/login";
+      return NextResponse.redirect(url);
     },
     async session({ session, token }) {
       session.user.accessToken = token.accessToken;

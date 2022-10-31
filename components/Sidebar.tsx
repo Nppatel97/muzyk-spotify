@@ -59,19 +59,19 @@ function Sidebar() {
           <p>Your Episodes</p>
         </button>
         <hr className="border-t-[0.1px] border-gray-900" />
-        {playlists.map((playlist: any) => (
-          <p
-            className="cursor-pointer hover:text-white w-[25ch]"
-            key={playlist.id}
-            onClick={() => {
-              setPlaylistId(playlist.id);
-            }}
-          >
-            {playlist.name.length < 25
-              ? playlist.name
-              : `${playlist.name.substring(0, 22)}...`}
-          </p>
-        ))}
+        <div className="pb-28 space-y-4">
+          {playlists.map((playlist: any) => (
+            <p
+              className="cursor-pointer hover:text-white w-[25ch] truncate"
+              key={playlist.id}
+              onClick={() => {
+                setPlaylistId(playlist.id);
+              }}
+            >
+              {playlist.name}
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   );
