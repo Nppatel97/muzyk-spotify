@@ -1,27 +1,21 @@
-# Next.js + Tailwind CSS Example
+# Muzyk - A Spotify clone
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+👋 Check out this fully working Spotify clone! This demo is made using TypeScript, [Tailwind CSS](https://tailwindcss.com/) and [Next.js](https://nextjs.org/). I built this to simply explore different APIs (Spotify, in this case) and practice my TypeScript. I chose Spotify as I am a music lover and in my opinion, Spotify's UI is one of the best out there!🔥
 
-## Deploy your own
+## All Technologies used
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+1. [React.js](https://reactjs.org/)
+2. [Next.js](https://nextjs.org/)
+3. [TypeScript](https://www.typescriptlang.org/)
+4. [Tailwind CSS](https://tailwindcss.com/)
+5. [React Icons](https://react-icons.github.io/react-icons)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## To run it locally
 
-## How to use
+1. Clone this repo on your machine and run `npm i`
+2. Then run `npm run dev` which will bring the demo to life on `http://localhost:3000/`
+3. It should automatically redirect you to Spotify custom login page, if it does not, go to `http://localhost:3000/login`
+4. Login using your Spotify credentials and your playlists will be loaded.
+5. To use the music controls, first open the spotify app on any of your device and play the song so that the API is able to communicate with the demo.
+6. All done! You can now use the demo just like Spotify.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
