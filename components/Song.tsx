@@ -1,13 +1,30 @@
 import React from "react";
 import { BsPlayFill } from "react-icons/bs";
+import { useRecoilState } from "recoil";
+import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import useSpotify from "../hooks/useSpotify";
 import { convertDateFormat } from "../lib/date";
 import { millisToMinutesAndSeconds } from "../lib/time";
 // Add types
 function Song({ order, track }: any) {
   const spotifyApi = useSpotify();
+  const [currentTrackId, setCurrentTrackId] =
+    useRecoilState(currentTrackIdState);
+  const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
+
+  const playSong = () => {
+    setCurrentTrackId(track.track.id);
+    setIsPlaying(true);
+    spotifyApi.play({
+      uris: [track.track.uri],
+    });
+  };
+
   return (
-    <div className="grid grid-cols-2 text-gray-400 py-2 px-5 hover:bg-gray-900 rounded-md group cursor-pointer">
+    <div
+      className="grid grid-cols-2 text-gray-400 py-2 px-5 hover:bg-gray-900 rounded-md group cursor-pointer"
+      onClick={() => playSong()}
+    >
       <div className="flex items-center space-x-4 relative">
         <p>{order + 1}</p>
         <p className="group-hover:opacity-100 absolute -left-6 bg-gray-900 p-1 opacity-0">
@@ -24,10 +41,10 @@ function Song({ order, track }: any) {
         </div>
       </div>
       <div className="flex items-center justify-between ml-auto md:ml-0">
-        <p className="hidden md:inline truncate w-40">
-          {track.track.album.name}
+        <p className="truncate w-40">{track.track.album.name}</p>
+        <p className="hidden md:inline">
+          {convertDateFormat(track.added_at.split("T")[0])}
         </p>
-        <p>{convertDateFormat(track.added_at.split("T")[0])}</p>
         <p>{millisToMinutesAndSeconds(track.track.duration_ms)}</p>
       </div>
     </div>

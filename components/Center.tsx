@@ -43,7 +43,7 @@ function Center() {
       <header className="absolute top-5 right-8">
         <div
           className="text-white flex items-center space-x-2 bg-black opacity-90 hover:opacity-80 p-1 pr-2 cursor-pointer rounded-full"
-          onClick={() => signOut}
+          onClick={() => signOut()}
         >
           <img
             className="rounded-full object-cover h-8 w-8"
