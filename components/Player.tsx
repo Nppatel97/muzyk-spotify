@@ -16,6 +16,7 @@ import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import useSongInfo from "../hooks/useSongInfo";
 import useSpotify from "../hooks/useSpotify";
 import { debounce } from "lodash";
+import Image from "next/image";
 
 function Player() {
   const spotifyApi = useSpotify();
@@ -76,10 +77,12 @@ function Player() {
     <div className="h-24 bg-zinc-900 text-white grid grid-cols-3 pr-4 text-xs md:text-base px-4 border-t border-gray-800">
       {/* Left side */}
       <div className="flex items-center space-x-4 ">
-        <img
+        <Image
           className="inline h-18 w-18"
           src={songInfo?.album.images?.[0].url}
           alt="Current Song album image"
+          width={75}
+          height={75}
         />
         <div>
           <h3 className="font-semibold text-lg">{songInfo?.name}</h3>
